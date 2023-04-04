@@ -1,0 +1,52 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Vbirtual</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/CSS/Menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+
+
+        <header th:replace="Layout/Plantilla :: header" />
+        <div class="contenido">
+            <h2>Lista de usuarios</h2>
+            <a th:href="@{/usuario/nuevo}">Nuevo Usuario</a>
+            <br/>
+            <br/>
+            <div th:if="${usuarios != null and !usuarios.empty}">
+                <table border="1">
+                    <thead>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>FechaNacimiento</th>
+                    <th>Telefono</th>
+                    <th>Nacionalidad</th>
+                    <th>Contraseña</th>
+                    <th colspan="2">Acciones</th>
+                    <thead/>
+                    <tbody>
+                        <tr th:each="item : ${usuarios}">
+                            <td th:text="${item.nombre}"></td>
+                            <td th:text="${item.correoElectronico}"></td>
+                            <td th:text="${item.fechaNacimiento}"></td>
+                            <td th:text="${item.telefono}"></td>
+                            <td th:text="${item.nacionalidad}"></td>
+                            <td th:text="${item.contrasena}"></td>
+                            
+                            
+                            <td><a th:href="@{/usuario/modificar/}+ ${item.idUsuario}">Modificar <a/></td>  
+                            <td><a th:href="@{/usuario/eliminar/}+ ${item.idUsuario}">Eliminar <a/></td> 
+                        <tr/>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${usuarios == null or usuarios.empty}">
+                La lista esta vacia...
+            </div>
+
+        </div>
+        <footer th:replace="Layout/Plantilla :: footer" />
+    </body>
+</html>

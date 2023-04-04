@@ -1,0 +1,48 @@
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>Modificar Usuario</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/CSS/Menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+        <header th:replace="Layout/Plantilla :: header" />
+        <div class="contenido">
+            <h1>Datos del Usuario</h1>
+        <a th:href="@{/usuario/listado}">Regresar</a>
+        <br/>
+        <br/>
+        <form th:action="@{/usuario/guardar}"
+              method="POST"
+              th:object="${usuario}">
+            <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+           
+            <input type="text" id="nombre" name="nombre" th:field="*{nombre}"/>
+            <label for="nombre">Nombre</label><br/>
+            
+             <input type="email" id="correoElectronico" name="correoElectronico" th:field="*{correoElectronico}"/>
+            <label for="correoElectronico">correoElectronico</label><br/>
+            
+            
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}"/>
+            <label for="fechaNacimiento">FechaNacimiento</label><br/>
+            
+
+            <input type="tel" id="telefono" name="telefono" th:field="*{telefono}"/>
+            <label for="telefono">Telefono</label><br/>
+            
+            <input type="text" id="nacionalidad" name="nacionalidad" th:field="*{nacionalidad}"/>
+            <label for="nacionalidad">Nacionalidad</label><br/>
+            
+            <input type="text" id="contrasena" name="contrasena" th:field="*{contrasena}"/>
+            <label for="contrasena">Contraseña</label><br/>
+            
+           
+            
+            <input type="submit" name="guardar" value="Guardar" />
+
+        </form>
+        </div>
+        <footer th:replace="Layout/Plantilla :: footer" />
+    </body>
+</html>

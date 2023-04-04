@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <h1>Datos del Usuario</h1>
+        <a th:href="@{/}">Regresar</a>
+        <br/><!-- comment -->
+        <br/>
+        <form th:action="@{/guardarUsuario}"
+              method="POST"
+              th:object="${usuario}">
+            <input type="hidden" name="idUsuario" th:field="*{idUsuario}" />
+            
+            <label for="nombre">Nombre</label><br/>
+            <input type="text" id="nombre" name="nombre" th_field="{nombre}">
+            
+            
+            <label for="correo">Correo</label><br/>
+            <input type="email" id="correo" name="correo" th_field="{correo}">
+            
+            <label for="fechaNacimiento">FechaNacimiento</label><br/>
+            <input type="date" id="fechaNacimiento" name="fechaNacimiento" th_field="{fechaNacimiento}">
+
+            <label for="telefono">Telefono</label><br/>
+            <input type="tel" id="telefono" name="telefono" th_field="{telefono}">
+            
+            
+            <label for="nacionalidad">Nacionalidad</label><br/>
+            <input type="text" id="nacionalidad" name="nacionalidad" th_field="{nacionalidad}">
+            
+            <label for="contrasena">Contraseña</label><br/>
+            <input type="text" id="contrasena" name="contrasena" th_field="{contrasena}"><br/><br/>
+            
+            <input type="submit" name="guardar" value="Guardar" />
+            
+            
+        </form>
+    </body>
+</html>

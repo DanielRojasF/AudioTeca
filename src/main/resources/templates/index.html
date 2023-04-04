@@ -1,0 +1,42 @@
+
+<html xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/CSS/Menu.css" rel="stylesheet" type="text/css"/>
+    </head>
+    <body>
+
+
+
+        <header th:replace="layout/Plantilla :: header" />
+        <div class="contenido">
+            <h2>Lista Articulos</h2>
+            <br/>
+            <div th:if="${articulos != null and !articulos.empty}">
+                <table border="1">
+                    <thead>
+                    <th>Descripcion</th>
+                    <th>Precio</th>
+                    <th>Acciones</th>
+                   
+                    <thead/>
+                    <tbody>
+                        <tr th:each="item : ${articulos}">
+                            <td th:text="${item.descripcion}"></td>
+                            <td th:text="${#numbers.formatDecimal(item.precio, 3, 2)}"></td>
+                            <td><a th:href="@{/carrito/agregar/}+ ${item.idArticulo}">Agregar<a/></td> 
+                        <tr/>
+                    </tbody>
+                </table>
+            </div>
+            <div th:if="${articulos == null or articulos.empty}">
+                La lista esta vacia...
+            </div>
+
+        </div>
+        <footer th:replace="layout/Plantilla :: footer" />
+    </body>
+</html>
+
