@@ -19,7 +19,7 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
-    private String usuario;
+    private String nombre;
     private String correoElectronico;
     private String fechaNacimiento;
     private String telefono;
@@ -34,8 +34,8 @@ public class Usuario implements Serializable {
         this.contrasenna = contrasenna;
     }
 
-    public Usuario(String usuario, String correoElectronico, String fechaNacimiento, String telefono, String nacionalidad, String contrasenna) {
-        this.usuario = usuario;
+    public Usuario(String nombre, String correoElectronico, String fechaNacimiento, String telefono, String nacionalidad, String contrasenna) {
+        this.nombre = nombre;
         this.correoElectronico = correoElectronico;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;

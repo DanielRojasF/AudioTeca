@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<!--
+Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+Click nbfs://nbhost/SystemFileSystem/Templates/Other/html.html to edit this template
+-->
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+         <section th:fragment="botonesAgregar" class="py-4 mb-4 bg-light">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-3" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarUsuario">
+                            <i class="fas fa-plus"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section th:fragment="listadoUsuarios" id="usuarios">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-9">
+                        <div class="card">
+                            <div class="card-header">
+                                <h4>[[#{usuario.titulo}]]</h4>
+                            </div>
+                            <div th:if="${usuarios != null and !usuarios.empty}">
+                                <table class="table table-stryped">
+                                    <thead class="thead-dark">
+                                        <tr>
+                                            <th>#</th>
+                                            <th th:text="#{usuario.nombre}">Nombre</th>
+                                            <th th:text="#{usuario.correoElectronico}">Correo Electronico</th>
+                                            <th th:text="#{usuario.fechaNacimiento}">Fecha Nacimiento</th>
+                                            <th th:text="#{usuario.telefono}">Telefono</th>
+                                            <th th:text="#{usuario.nacionalidad}">Nacionalidad</th>
+                                            <th th:text="#{usuario.contrasenna}">Contraseña</th>
+
+                                            <th></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr th:each="usuario, contador : ${usuarios}"> 
+                                            <td>[[${contador.count}]]</td>
+                                            <td>[[${usuario.nombre}]]</td>
+                                            <td>[[${usuario.correoElectronico}]]</td>
+                                            <td>[[${usuario.fechaNacimiento}]]</td>
+                                            <td>[[${usuario.telefono}]]</td>
+                                            <td>[[${usuario.nacionalidad}]]</td>
+                                            <td>[[${usuario.contrasenna}]]</td>
+
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
+                                                   class="btn btn-danger">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.eliminar}]]
+                                                </a>
+                                            </td>
+                                            <td>
+                                                <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/usuario/modificar/}+${usuario.idUsuario}"
+                                                   class="btn btn-success">
+                                                    <i class="fas fa-angle-double-right"></i> [[#{accion.actualizar}]]
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="text-center p-2" th:if="${usuarios == null or usuarios.empty}">
+                                <span th:text="#{usuario.no_mostrar}">Lista vacía</span>
+                            </div>
+                        </div>
+                    </div>
+<!--                       <div class="col-md-3">
+                        <div class="card text-center bg-danger text-white mb-3">
+                            <div class="card-body">
+                                <h3 th:text="#{usuario.limiteTotal}">Límite Total</h3>
+                                <h4 class="display-4">
+                                    ¢[[${#numbers.formatDecimal(limiteTotal, 1, 'DEFAULT', 2, 'DEFAULT')}]]
+                                </h4>
+                            </div>
+                        </div>
+
+                        <div class="card text-center bg-success text-white mb-3">
+                            <div class="card-body">
+                                <h3 th:text="#{usuario.totalUsuarios}">Total Usuarios</h3>
+                                <h4 class="display-4">
+                                    <i class="fas fa-users"></i> [[${totalUsuarios}]]
+                                </h4>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+        </section>
+        <section th:fragment="agregarUsuario">
+            <div id="agregarUsuario" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Usuario</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/usuario/guardar}" th:object="${usuario}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{usuario.nombre}">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="correoElectronico" th:text="#{usuario.correoElectronico}">correoElectronico</label>
+                                    <input type="text" class="form-control" name="correoElectronico" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaNacimiento" th:text="#{usuario.fechaNacimiento}">fechaNacimiento</label>
+                                    <input type="date" class="form-control" name="fechaNacimiento" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" th:text="#{usuario.telefono}">Teléfono</label>
+                                    <input type="tel" class="form-control" name="telefono">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nacionalidad" th:text="#{usuario.nacionalidad}">nacionalidad</label>
+                                    <input type="text" class="form-control" name="nacionalidad" required="true" >
+                                </div>
+                                 <div class="form-group">
+                                    <label for="contrasenna" th:text="#{usuario.contrasenna}">contrasenna</label>
+                                    <input type="text" class="form-control" name="contrasenna" required="true">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section th:fragment="editarUsuario">            
+            <form method="POST"
+                  th:action="@{/usuario/guardar}"
+                  th:object="${usuario}"
+                  class="was-validated">
+                <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
+                <section th:replace="usuario/fragmentosUsuario :: botonesEditar"/> 
+                <div id="details">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card">
+                                    <div class="card-header">
+                                        <h4>[[#{accion.actualizar}]]</h4>
+                                    </div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{usuario.nombre}">Nombre: </label>
+                                            <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <label for="correoElectronico" th:text="#{usuario.correoElectronico}">correoElectronico: </label>
+                                            <input type="text"  class="form-control" name="correoElectronico" th:field="*{correoElectronico}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaNacimiento" th:text="#{usuario.fechaNacimiento}">fechaNacimiento: </label>
+                                            <input type="date"  class="form-control" name="correo" th:field="*{fechaNacimiento}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono" th:text="#{usuario.telefono}">Teléfono: </label>
+                                            <input type="tel"  class="form-control" name="telefono" th:field="*{telefono}"/>
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nacionalidad" th:text="#{usuario.nacionalidad}">Limite: </label>
+                                            <input type="text"  class="form-control" name="nacionalidad" th:field="*{usuario.nacionalidad}"/>
+                                        </div>   
+                                        <div class="form-group">
+                                            <label for="contrasenna" th:text="#{usuario.contrasenna}">contrasenna: </label>
+                                            <input type="text" class="form-control" name="contrasenna" th:field="*{contrasenna}"/>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </section>
+                <section th:fragment="botonesEditar">
+            <div id="actions" class="py-4 mb-4 bg-light">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3">
+                            <a th:href="@{/usuario/listado}" class="btn btn-ligth btn-block">
+                                <i class="fas fa-arrow-left"></i> [[#{accion.regresar}]]
+                            </a>
+                        </div>
+                        <div class="col-md-3">
+                            <button type="submit" class="btn btn-success btn-block">
+                                <i class="fas fa-check"></i> [[#{accion.guardar}]]
+                            </button>
+                        </div>
+                        <div class="col-md-3">
+                            <a th:href="@{/usuario/eliminar/}+${usuario.idUsuario}"
+                               class="btn btn-danger btn-block">
+                                <i class="fas fa-trash"></i> [[#{accion.eliminar}]]
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </body>
+</html>

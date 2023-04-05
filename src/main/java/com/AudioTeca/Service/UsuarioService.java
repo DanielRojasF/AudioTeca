@@ -21,4 +21,14 @@ public interface UsuarioService {
     
     public void delete(Usuario usuario);
     
+     public List<Usuario> getUsuarioPorNombre(String nombre);
+    
+    public List<Usuario> getUsuarioPorTelefono(String telefono);
+    
+ 
+    
 }
+
+    
+    
+
