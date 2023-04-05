@@ -63,7 +63,7 @@ public class UsuarioServiceIMPL implements UsuarioService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional(readOnly = true) 
     public Usuario getUsuario(Usuario usuario) {
         return usuarioDao.findById(usuario.getIdUsuario()).orElse(null);
     }

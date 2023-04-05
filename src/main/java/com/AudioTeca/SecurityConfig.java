@@ -28,13 +28,13 @@ public class SecurityConfig {
 //                .build();
         UserDetails user = User.builder()
                 .username("user")
-                .password("{noop}123")     
-                .roles("USER") 
+                .password("{noop}123")
+                .roles("USER")
                 .build();
 //        return new InMemoryUserDetailsManager(user, sales, admin);
         return new InMemoryUserDetailsManager(user, admin);
     }
-    
+
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http)
             throws Exception {
@@ -47,24 +47,18 @@ public class SecurityConfig {
                         "/error",
                         "/webjars/**").permitAll()
                 .requestMatchers(
-                        "/articulo/nuevo",
-                        "/articulo/guardar",
-                        "/articulo/modificar/**",
-                        "/articulo/eliminar/**",
-                        "/categoria/nuevo",
-                        "/categoria/guardar",
-                        "/categoria/modificar/**",
-                        "/categoria/eliminar/**",
+                        "/libro/nuevo",
+                        "/libro/guardar",
+                        "/libro/modificar/**",
+                        "/libro/eliminar/**",
+                        "/usuario/listado",
                         "/usuario/nuevo",
                         "/usuario/guardar",
                         "/usuario/modificar/**",
                         "/usuario/eliminar/**")
-//                .hasRole("ADMIN")
-                        .permitAll()
+                .hasRole("ADMIN") 
                 .requestMatchers(
-                        "/articulo/listado",
-                        "/categoria/listado",
-                        "/usuario/listado")
+                        "/libro/listado")
                 .hasAnyRole("ADMIN", "USER")
                 )
                 .formLogin((form) -> form
@@ -75,6 +69,5 @@ public class SecurityConfig {
                 .accessDeniedPage("/errores/403");
         return http.build();
     }
-    
+
 }
-  

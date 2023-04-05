@@ -44,4 +44,10 @@ public class LibroServiceIMPL implements LibroService{
     public void delete(Libro libro) {
         libroDao.deleteById(libro.getIdLibro());
     }
+    
+    @Override
+    public List<Libro> getLibroPorTitulo(String titulo) {
+        return libroDao.findByTitulo(titulo);
+ 
+    }
 }

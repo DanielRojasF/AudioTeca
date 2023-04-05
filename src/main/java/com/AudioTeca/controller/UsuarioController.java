@@ -11,27 +11,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 
-//@Controller
-//public class UsuarioController {
-//    
-//    @Autowired
-//    UsuarioService usuarioService;
-//    
-//    @GetMapping("/usuario/nuevo")
-//    public String nuevoUsuario(Usuario usuario){
-//        return "/usuario/modificarUsuario";
-//    }
-//    
-//    @PostMapping("/usuario/guardar")
-//    public String guardarUsuario(Usuario usuario){
-//        usuarioService.save(usuario);
-//        return "redirect:/usuario/listado";
-//    }
-//    
-//    
-//    
-//}
-
 @Controller
 public class UsuarioController {
     
@@ -40,7 +19,7 @@ public class UsuarioController {
     
     
     
-    @GetMapping("/usuario/listado")
+    @GetMapping("/usuario/listado")  
     public String inicio(Model model) {
         var usuarios=usuarioService.getUsuarios();
 //        
@@ -78,7 +57,7 @@ public class UsuarioController {
     @GetMapping("/usuario/eliminar/{idUsuario}")
     public String eliminarUsuario(Usuario usuario){
      usuarioService.delete(usuario);
-            return "redirect/usuario/listado";
+            return "redirect:/usuario/listado";
     }
     
   
@@ -87,7 +66,7 @@ public class UsuarioController {
         return "/usuario/buscarUsuario";
     }
     
- @PostMapping ("/usuario/busqueda")
+ @PostMapping ("/usuario/busqueda") 
  public String busqueda(Usuario usuario, Model model){
      var usuarios = usuarioService.getUsuarioPorNombre(usuario.getNombre());
      model.addAttribute("resultados",usuarios);
