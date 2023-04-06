@@ -21,17 +21,11 @@ public class SecurityConfig {
                 .password("{noop}123")
                 .roles("USER", "ADMIN")
                 .build();
-//        UserDetails sales = User.builder()
-//                .username("vendedor")
-//                .password("{noop}123")
-//                .roles("USER", "VENDEDOR")
-//                .build();
         UserDetails user = User.builder()
                 .username("user")
                 .password("{noop}123")
                 .roles("USER")
                 .build();
-//        return new InMemoryUserDetailsManager(user, sales, admin);
         return new InMemoryUserDetailsManager(user, admin);
     }
 
