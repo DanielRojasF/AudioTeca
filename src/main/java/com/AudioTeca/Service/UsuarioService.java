@@ -7,10 +7,7 @@ package com.AudioTeca.Service;
 import com.AudioTeca.domain.Usuario;
 import java.util.List;
 
-/**
- *
- * @author Stiphen Campos
- */
+
 public interface UsuarioService {
     
     public List<Usuario> getUsuarios();
@@ -28,7 +25,7 @@ public interface UsuarioService {
  
     
 }
-
+ 
     
     
 

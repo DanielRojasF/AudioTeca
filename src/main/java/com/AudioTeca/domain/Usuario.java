@@ -5,8 +5,12 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import java.io.Serializable;
+import java.util.List;
+import javax.validation.constraints.NotEmpty;
 import lombok.Data;
 
 @Data
@@ -25,7 +29,7 @@ public class Usuario implements Serializable {
     private String telefono;
     private String nacionalidad;
     private String contrasenna;
-
+ 
     public Usuario() {
     }
 
@@ -39,9 +43,22 @@ public class Usuario implements Serializable {
         this.correoElectronico = correoElectronico;
         this.fechaNacimiento = fechaNacimiento;
         this.telefono = telefono;
-        this.nacionalidad = nacionalidad;
+        this.nacionalidad = nacionalidad; 
         this.contrasenna = contrasenna;
     }
+     
+ 
+    
+    @NotEmpty
+    private String username;
+    
+    @NotEmpty 
+    private String password;
+    
+    @JoinColumn(name ="id_usuario")
+    @OneToMany
+    private List<Rol> roles;
+    
    
     
 }

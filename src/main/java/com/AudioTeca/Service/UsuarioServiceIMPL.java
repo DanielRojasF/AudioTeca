@@ -5,16 +5,24 @@
 package com.AudioTeca.Service;
 
 import com.AudioTeca.dao.UsuarioDao;
+import com.AudioTeca.domain.Rol;
 import com.AudioTeca.domain.Usuario;
+import java.util.ArrayList;
 import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
-/**
- *
- * @author Stiphen Campos
- */
+
+
 //@Service
 //public class UsuarioServiceIMPL implements UsuarioService{
 //    
@@ -49,7 +57,8 @@ import org.springframework.transaction.annotation.Transactional;
 //    }
 //}
 @Service
-public class UsuarioServiceIMPL implements UsuarioService {
+@Slf4j
+public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
 
     @Autowired
     UsuarioDao usuarioDao;
@@ -100,6 +109,25 @@ public class UsuarioServiceIMPL implements UsuarioService {
     public List<Usuario> getUsuarioPorTelefono(String telefono) {
         return usuarioDao.findByTelefono(telefono);
 
+    }
+    
+     @Override
+    @Transactional(readOnly = true)
+    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        //Busca el usuario por el username en la tabla    
+        Usuario usuario = usuarioDao.findByUsername(username);
+        //Si no existe el usuario lanza una excepción     
+        if (usuario == null) {
+            throw new UsernameNotFoundException(username);
+        }
+        //Si está acá es porque existe el usuario... sacamos los roles que tiene      
+        var roles = new ArrayList<GrantedAuthority>();
+        for (Rol rol
+                : usuario.getRoles()) {   //Se sacan los roles          
+            roles.add(new SimpleGrantedAuthority(rol.getNombre()));
+        }
+        //Se devuelve User (clase de userDetails)     
+        return new User(usuario.getNombre(), usuario.getContrasenna(), roles);
     }
 
   
