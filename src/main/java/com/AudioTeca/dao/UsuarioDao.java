@@ -8,9 +8,9 @@ import org.springframework.data.jpa.repository.JpaRepository;
 //public interface UsuarioDao extends CrudRepository<Usuario, Long> {
 public interface UsuarioDao extends JpaRepository<Usuario, Long> {
 
-    Usuario findByUsername(String username); 
+    Usuario findByNombre(String nombre); 
 
-    public List<Usuario> findByNombre(String nombre);
+//    public List<Usuario> findByNombre(String nombre);
 
     public List<Usuario> findByTelefono(String telefono);
 

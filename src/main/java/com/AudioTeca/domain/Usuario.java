@@ -23,11 +23,13 @@ public class Usuario implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
+    @NotEmpty
     private String nombre;
     private String correoElectronico;
-    private String fechaNacimiento;
+    private String fechaNacimiento; 
     private String telefono;
-    private String nacionalidad;
+    private String nacionalidad; 
+    @NotEmpty
     private String contrasenna;
  
     public Usuario() {
@@ -49,11 +51,11 @@ public class Usuario implements Serializable {
      
  
     
-    @NotEmpty
-    private String username;
-    
-    @NotEmpty 
-    private String password;
+//    @NotEmpty
+//    private String username;
+//    
+//    @NotEmpty 
+//    private String password;
     
     @JoinColumn(name ="id_usuario")
     @OneToMany

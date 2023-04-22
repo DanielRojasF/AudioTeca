@@ -4,6 +4,7 @@
  */
 package com.AudioTeca.Service;
 
+import com.AudioTeca.dao.RolDao;
 import com.AudioTeca.dao.UsuarioDao;
 import com.AudioTeca.domain.Rol;
 import com.AudioTeca.domain.Usuario;
@@ -62,6 +63,9 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
 
     @Autowired
     UsuarioDao usuarioDao;
+    
+    @Autowired
+    RolDao rolDao;
 
 //     @Autowired
 //     CreditoDao creditoDao;
@@ -89,7 +93,11 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
     @Override
     @Transactional
     public void save(Usuario usuario) {
-        usuarioDao.save(usuario);
+        usuario = usuarioDao.save(usuario);
+        Rol rol = new Rol("ROL_USER", usuario.getIdUsuario());
+        rolDao.save(rol);
+        
+  
 
     }
 
@@ -100,7 +108,7 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
     }
 
     @Override
-    public List<Usuario> getUsuarioPorNombre(String nombre) {
+    public Usuario getUsuarioPorNombre(String nombre) {
         return usuarioDao.findByNombre(nombre);
 
     }
@@ -111,14 +119,14 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
 
     }
     
-     @Override
+     @Override 
     @Transactional(readOnly = true)
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+    public UserDetails loadUserByUsername(String nombre) throws UsernameNotFoundException {
         //Busca el usuario por el username en la tabla    
-        Usuario usuario = usuarioDao.findByUsername(username);
+        Usuario usuario = usuarioDao.findByNombre(nombre);
         //Si no existe el usuario lanza una excepción     
         if (usuario == null) {
-            throw new UsernameNotFoundException(username);
+            throw new UsernameNotFoundException(nombre);
         }
         //Si está acá es porque existe el usuario... sacamos los roles que tiene      
         var roles = new ArrayList<GrantedAuthority>();

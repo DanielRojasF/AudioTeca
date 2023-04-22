@@ -2,7 +2,10 @@
 package com.AudioTeca.controller;
 
 import com.AudioTeca.Service.UsuarioService;
+import com.AudioTeca.domain.Rol;
 import com.AudioTeca.domain.Usuario;
+import java.util.ArrayList;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

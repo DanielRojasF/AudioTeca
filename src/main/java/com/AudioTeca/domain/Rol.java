@@ -1,6 +1,7 @@
 
 package com.AudioTeca.domain;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -25,5 +26,16 @@ public class Rol implements Serializable {
     
     @NotEmpty
     private String nombre;
+    @Column(name = "id_usuario")
+    private Long idUsuario;
+
+    public Rol(String nombre, Long idUsuario) {
+        this.nombre = nombre;
+        this.idUsuario = idUsuario;
+    }
+
+  
+
+    
     
 }
