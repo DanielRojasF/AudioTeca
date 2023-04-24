@@ -25,7 +25,7 @@
         <section th:fragment="listadoLibros" id="libros">
             <div class="container">
                 <div class="row">
-                    <div class="col-md-9">
+                    <div class="col-md-16">
                         <div class="card">
                             <div class="card-header">
                                 <h4>[[#{libro.titulo}]]</h4>
@@ -36,10 +36,10 @@
                                         <tr>
                                             <th>#</th>
                                             <th th:text="#{libro.titulo}">Nombre</th>
-                                            <th th:text="#{libro.descripcion}">Correo Electronico</th>
-                                            <th th:text="#{libro.imagen}">Fecha Nacimiento</th>
-                                            <th th:text="#{libro.audio}">Telefono</th>
-                                            <th th:text="#{libro.pdf}">Nacionalidad</th>
+                                            <th th:text="#{libro.descripcion}">Descripcion</th>
+                                            <th th:text="#{libro.imagen}">Imagen</th>
+                                            <th th:text="#{libro.audio}">Audio</th>
+                                            <th th:text="#{libro.pdf}">Leer PDF</th>
 
                                             <th></th>
                                             <th></th>
@@ -50,9 +50,23 @@
                                             <td>[[${contador.count}]]</td>
                                             <td>[[${libro.titulo}]]</td>
                                             <td>[[${libro.descripcion}]]</td>
-                                            <td>[[${libro.imagen}]]</td>
-                                            <td>[[${libro.audio}]]</td>
-                                            <td>[[${libro.pdf}]]</td>
+                                            <td>
+                                                <image th:src="${libro.imagen}" height="150" />
+                                            </td>
+                                            <td> 
+                                                <figure>
+                                                    <audio th:src="${libro.audio}" controls>
+                                                        <source src="${libro.audio}" type="audio/mpeg">
+                                                        Your browser does not support the <code>audio</code> tag.
+                                                    </audio>
+                                                </figure>
+
+                                            </td>
+                                            <td>
+                                                <p>
+                                                    <a th:href="${libro.pdf}" class="btn btn-primary btn-lg active" role="button" aria-pressed="true">PDF</a>
+                                                </p>
+                                            </td>
 
                                             <td>
                                                 <a sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/libro/eliminar/}+${libro.idLibro}"

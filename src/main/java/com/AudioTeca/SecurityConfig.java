@@ -55,8 +55,10 @@ public class SecurityConfig {
                         "/index",
                         "/errores/**",
                         "/error",
+                        "/parte*",
                         "/webjars/**").permitAll()
                 .requestMatchers(
+                        "/libro/*.pdf*",
                         "/libro/nuevo",
                         "/libro/guardar",
                         "/libro/modificar/**",
@@ -68,7 +70,8 @@ public class SecurityConfig {
                         "/usuario/eliminar/**")
                 .hasRole("ADMIN") 
                 .requestMatchers(
-                        "/libro/listado")
+                        "/libro/listado",
+                        "/libro/*.pdf*")
                 .hasAnyRole("ADMIN", "USER")
                 )
                 .formLogin((form) -> form

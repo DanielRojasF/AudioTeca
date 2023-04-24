@@ -20,23 +20,23 @@ public class TemplateResolverConfiguration {
         return templateResolver;            
     }
 
-    @Bean    public SpringResourceTemplateResolver TemplateResolver_2() {
+    @Bean    public SpringResourceTemplateResolver TemplateResolver_1() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix("templates/libros/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setOrder(2);
+        templateResolver.setOrder(1);
         templateResolver.setCheckExistence(true);
         return templateResolver;            
     }
-    @Bean    public SpringResourceTemplateResolver TemplateResolver_3() {
+    @Bean    public SpringResourceTemplateResolver TemplateResolver_2() {
         SpringResourceTemplateResolver templateResolver = new SpringResourceTemplateResolver();
         templateResolver.setPrefix("templates/usuario/");
         templateResolver.setSuffix(".html");
         templateResolver.setTemplateMode(TemplateMode.HTML);
         templateResolver.setCharacterEncoding("UTF-8");
-        templateResolver.setOrder(3);
+        templateResolver.setOrder(2);
         templateResolver.setCheckExistence(true);
         return templateResolver;            
     }
