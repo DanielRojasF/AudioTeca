@@ -29,10 +29,15 @@ public class Rol implements Serializable {
     @Column(name = "id_usuario")
     private Long idUsuario;
 
-    public Rol(String nombre, Long idUsuario) {
-        this.nombre = nombre;
-        this.idUsuario = idUsuario;
+    public Rol() {
     }
+    
+//    public Rol(String nombre, Long idUsuario) {
+//        this.nombre = nombre;
+//        this.idUsuario = idUsuario;
+//    }
+
+    
 
   
 

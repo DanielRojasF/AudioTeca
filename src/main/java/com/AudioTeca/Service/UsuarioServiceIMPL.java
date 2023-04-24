@@ -23,40 +23,6 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 
 
-
-//@Service
-//public class UsuarioServiceIMPL implements UsuarioService{
-//    
-//    @Autowired
-//    UsuarioDao usuarioDao;
-//    
-//   
-//    
-//
-//    @Override
-//    @Transactional(readOnly = true)
-//    public  List<Usuario> getUsuarios() {
-//        return (List<Usuario>) usuarioDao.findAll();
-//    }
-//
-//    @Override
-//    @Transactional(readOnly = true)
-//    public Usuario getUsuario(Usuario usuario) {
-//        return usuarioDao.findById(usuario.getIdUsuario()).orElse( null);
-//    }
-//    @Override
-//    @Transactional
-//    public void save(Usuario usuario) {
-//       
-//         usuarioDao.save(usuario);
-//    }
-//
-//    @Override
-//    @Transactional
-//    public void delete(Usuario usuario) {
-//        usuarioDao.deleteById(usuario.getIdUsuario());
-//    }
-//}
 @Service
 @Slf4j
 public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
@@ -67,8 +33,7 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
     @Autowired
     RolDao rolDao;
 
-//     @Autowired
-//     CreditoDao creditoDao;
+
     @Override
     @Transactional(readOnly = true)
     public List<Usuario> getUsuarios() {
@@ -80,15 +45,7 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
     public Usuario getUsuario(Usuario usuario) {
         return usuarioDao.findById(usuario.getIdUsuario()).orElse(null);
     }
-//    @Override
-//    @Transactional
-//    public void save(Usuario usuario) {
-//        Credito credito = usuario.getCredito();
-//         credito = creditoDao.save(credito);
-//         
-//         usuario.setCredito(credito);
-//         usuarioDao.save(usuario);
-//    }
+
 
     @Override
     @Transactional

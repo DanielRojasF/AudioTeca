@@ -49,13 +49,7 @@ public class Usuario implements Serializable {
         this.contrasenna = contrasenna;
     }
      
- 
-    
-//    @NotEmpty
-//    private String username;
-//    
-//    @NotEmpty 
-//    private String password;
+
     
     @JoinColumn(name ="id_usuario")
     @OneToMany
