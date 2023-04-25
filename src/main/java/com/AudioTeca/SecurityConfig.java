@@ -70,6 +70,8 @@ public class SecurityConfig {
                         "/usuario/eliminar/**")
                 .hasRole("ADMIN") 
                 .requestMatchers(
+                        "/",
+                        "/index",
                         "/libro/listado",
                         "/libro/*.pdf*")
                 .hasAnyRole("ADMIN", "USER")
