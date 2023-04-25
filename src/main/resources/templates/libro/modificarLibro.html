@@ -1,43 +1,15 @@
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Modificar Libro</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/CSS/Menu.css" rel="stylesheet" type="text/css"/>
+ <!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>TechShop</title>
     </head>
     <body>
-        <header th:replace="Layout/Plantilla :: header" />
-        <div class="contenido">
-            <h1>Datos del Libro</h1>
-        <a th:href="@{/libro/listado}">Regresar</a>
-        <br/>
-        <br/>
-        <form th:action="@{/libro/guardar}"
-              method="POST"
-              th:object="${libro}">
-            <input type="hidden" name="idLibro" th:field="*{idLibro}"/>
-           
-            <input type="text" id="titulo" name="titulo" th:field="*{titulo}"/>
-            <label for="titulo">Titulo</label><br/>
-            
-             <input type="text" id="descripcion" name="descripcion" th:field="*{descripcion}"/>
-            <label for="descripcion">Descripcion</label><br/>
-            
-            
-            <input type="text" id="imagen" name="imagen" th:field="*{imagen}"/>
-            <label for="imagen">Imagen</label><br/>
-            
-
-            <input type="text" id="audio" name="audio" th:field="*{audio}"/>
-            <label for="audio">Audio</label><br/>
-            
-            <input type="text" id="pdf" name="pdf" th:field="*{pdf}"/>
-            <label for="pdf">PDF</label><br/>
-            
-            <input type="submit" name="guardar" value="Guardar" />
-
-        </form>
-        </div>
-        <footer th:replace="Layout/Plantilla :: footer" />
+        <header th:replace="layout/plantilla :: header" />
+        <section th:replace="libro/fragmentosLibro :: editarLibro"/> 
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>
     </body>
 </html>

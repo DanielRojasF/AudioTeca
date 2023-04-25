@@ -133,51 +133,6 @@
                         </div>
                     </section>
 
-                    <section th:fragment="editarLibro">            
-                        <form method="POST"
-                              th:action="@{/libro/guardar}"
-                              th:object="${libro}"
-                              class="was-validated">
-                            <input type="hidden" name="idLibro" th:field="*{idLibro}"/>
-                            <section th:replace="libro/fragmentosLibro :: botonesEditar"/> 
-                            <div id="details">
-                                <div class="container">
-                                    <div class="row">
-                                        <div class="col">
-                                            <div class="card">
-                                                <div class="card-header">
-                                                    <h4>[[#{accion.actualizar}]]</h4>
-                                                </div>
-                                                <div class="card-body">
-                                                    <div class="form-group">
-                                                        <label for="titulo" th:text="#{libro.titulo}">Titulo: </label>
-                                                        <input type="text" class="form-control" name="titulo" th:field="*{titulo}"/>
-                                                    </div>
-
-                                                    <div class="form-group">
-                                                        <label for="descripcion" th:text="#{libro.descripcion}">Descripcion: </label>
-                                                        <input type="text"  class="form-control" name="descripcion" th:field="*{descripcion}"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="imagen" th:text="#{libro.imagen}">Imagen: </label>
-                                                        <input type="date"  class="form-control" name="correo" th:field="*{imagen}"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="audio" th:text="#{libro.audio}">Audio: </label>
-                                                        <input type="tel"  class="form-control" name="audio" th:field="*{audio}"/>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="pdf" th:text="#{libro.pdf}">PDF: </label>
-                                                        <input type="text"  class="form-control" name="pdf" th:field="*{libro.pdf}"/>
-                                                    </div>   
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </form>
-                    </section>
                     <section th:fragment="botonesEditar">
                         <div id="actions" class="py-4 mb-4 bg-light">
                             <div class="container">
@@ -202,6 +157,50 @@
                             </div>
                         </div>
                     </section>
-
+                    <section th:fragment="editarLibro">            
+                        <form method="POST"
+                              th:action="@{/libro/guardar}"
+                              th:object="${libro}"
+                              class="was-validated">
+                            <input type="hidden" name="idLibro" th:field="*{idLibro}"/>
+                            <section th:replace="libro/fragmentosLibro :: botonesEditar"/> 
+                            <div id="details">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>[[#{accion.actualizar}]]</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="titulo">Titulo </label>
+                                                        <input type="text" class="form-control" name="titulo" th:field="*{titulo}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="descripcion">Descripcion </label>
+                                                        <input type="text" class="form-control" name="descripcion" th:field="*{descripcion}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="imagen">Imagen </label>
+                                                        <input type="text"  class="form-control" name="imagen" th:field="*{imagen}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="audio">Audio </label>
+                                                        <input type="text"  class="form-control" name="audio" th:field="*{audio}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="pdf">PDF </label>
+                                                        <input type="text" class="form-control" name="pdf" th:field="*{pdf}"/>
+                                                    </div>
+                                                </div>                    
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
+                        </form>
+                    </section>
                     </body>
                     </html>

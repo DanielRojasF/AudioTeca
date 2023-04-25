@@ -15,13 +15,13 @@
                     <div class="card-body"> 
                         <h5 class="card-title">[[${libro.titulo}]]</h5>
                         <p class="card-text">[[${libro.descripcion}]]</p>
-                        <a href="@{/libro/listado}" class="btn btn-primary">Ver Libros</a>                        
+                        <a href="http://localhost:93/libro/listado" class="btn btn-primary">Ver Libros</a>                        
                     </div>
-                </div>                
+                </div>
             </div>
-            <div th:if="${libros == null or libros.empty}"  th:text="#{libro.no_mostrar}">
-                No tenemos lista de libros que mostrar...
-            </div>
+        <div th:if="${libros == null or libros.empty}"  th:text="#{libro.no_mostrar}">
+            No tenemos lista de libros que mostrar...
+        </div>
         </div>
         <footer th:replace="layout/plantilla :: footer"/>
     </body>
