@@ -55,7 +55,8 @@ public class SecurityConfig {
                         "/index",
                         "/errores/**",
                         "/error",
-                        "/parte*",
+                        "/parte*", 
+                        "/usuario/guardar",
                         "/webjars/**").permitAll()
                 .requestMatchers(
                         "/libro/*.pdf*",

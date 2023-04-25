@@ -34,7 +34,7 @@ public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
     RolDao rolDao;
  
  
-    @Override
+    @Override 
     @Transactional(readOnly = true) 
     public List<Usuario> getUsuarios() {  
         return (List<Usuario>) usuarioDao.findAll();
