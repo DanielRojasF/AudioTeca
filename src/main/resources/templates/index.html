@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://wwww.thymeleaf.org" 
@@ -9,14 +8,14 @@
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <div class="container">
-            <h2 th:text="#{index.titulo}">Nuestros Libros</h2>            
+            <h2>Libros Disponibles</h2>            
             <div class="row row-cols-3" th:if="${libros != null and !libros.empty}">
                 <div class="card" th:each="libro : ${libros}" >
-                    <div class="card-body">
-                        <h5 class="card-title">[[${libro.descripcion}]]</h5>
-<!--                        <h6 class="card-subtitle mb-2 text-muted text-end">¢[[${#numbers.formatDecimal(libro.precio, 1, 'DEFAULT', 2, 'DEFAULT')}]]</h6>-->
-<!--                        <a class="card-link" th:href="@{/carrito/agregar/} + ${libro.idLibro}">[[#{libro.comprar}]]</a>-->
-                        <p class="card-text">[[${libro.detalle}]]</p>                        
+                    <image th:src="${libro.imagen}" lass="card-img-top" alt="..."/>
+                    <div class="card-body"> 
+                        <h5 class="card-title">[[${libro.titulo}]]</h5>
+                        <p class="card-text">[[${libro.descripcion}]]</p>
+                        <a href="@{/libro/listado}" class="btn btn-primary">Ver Libros</a>                        
                     </div>
                 </div>                
             </div>
@@ -27,3 +26,5 @@
         <footer th:replace="layout/plantilla :: footer"/>
     </body>
 </html>
+
+
