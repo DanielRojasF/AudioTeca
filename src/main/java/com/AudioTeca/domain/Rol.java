@@ -12,18 +12,18 @@ import lombok.Data;
 import javax.validation.constraints.NotEmpty;
 
 @Data
-@Entity
+@Entity 
 @Table(name="rol")
-public class Rol implements Serializable {
+public class Rol implements Serializable { 
     private static final long serialVersionUID = 1L;
     
-    
+     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY )
     private Long idRol; // hibernate lo transforma id_cliente
     
     
-    
+     
     @NotEmpty
     private String nombre;
     @Column(name = "id_usuario")
@@ -32,10 +32,10 @@ public class Rol implements Serializable {
     public Rol() {
     }
     
-//    public Rol(String nombre, Long idUsuario) {
-//        this.nombre = nombre;
-//        this.idUsuario = idUsuario;
-//    }
+    public Rol(String nombre, Long idUsuario) {
+        this.nombre = nombre;
+        this.idUsuario = idUsuario;
+    }
 
     
 

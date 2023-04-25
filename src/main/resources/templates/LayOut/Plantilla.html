@@ -35,6 +35,97 @@
                                    th:text="#{plantilla.favoritos}">Favorilos</a> 
                             </li>
                         </ul>
+                        
+                        
+                        
+                        <ul>
+                         <div class="container" >
+                <div class="row">
+                    <div class="col-md-3" >   
+                        <button 
+                            type="button" 
+                            class="btn btn-primary btn-block" 
+                            data-bs-toggle="modal" 
+                            data-bs-target="#agregarUsuario">
+                            <i class="nav-item px-2"></i> [[#{accion.agregar}]]
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        
+        <section th:fragment="agregarUsuario">
+            <div id="agregarUsuario" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header bg-info text-white">
+                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Usuario</h5>
+                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div> 
+                        <form th:action="@{/usuario/guardar}" th:object="${usuario}"
+                              method="POST" class="was-validated">
+                            <div class="modal-body">
+                                <div class="form-group">
+                                    <label for="nombre" th:text="#{usuario.nombre}">Nombre</label>
+                                    <input type="text" class="form-control" name="nombre" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="correoElectronico" th:text="#{usuario.correoElectronico}">correoElectronico</label>
+                                    <input type="text" class="form-control" name="correoElectronico" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="fechaNacimiento" th:text="#{usuario.fechaNacimiento}">fechaNacimiento</label>
+                                    <input type="date" class="form-control" name="fechaNacimiento" required="true">
+                                </div>
+                                <div class="form-group">
+                                    <label for="telefono" th:text="#{usuario.telefono}">Teléfono</label>
+                                    <input type="tel" class="form-control" name="telefono">
+                                </div>
+                                <div class="form-group">
+                                    <label for="nacionalidad" th:text="#{usuario.nacionalidad}">nacionalidad</label>
+                                    <input type="text" class="form-control" name="nacionalidad" required="true" >
+                                </div>
+                                 <div class="form-group">
+                                    <label for="contrasenna" th:text="#{usuario.contrasenna}">contrasenna</label>
+                                    <input type="text" class="form-control" name="contrasenna" required="true">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>  
+                       </ul> 
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
+                        
                         <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()"> 
                             <li class="nav-item mr-3"> 
                                 <a href="#" class="nav-link"> 

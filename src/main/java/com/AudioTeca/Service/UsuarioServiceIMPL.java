@@ -27,16 +27,16 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 @Slf4j
 public class UsuarioServiceIMPL implements UsuarioService, UserDetailsService {
 
-    @Autowired
+    @Autowired  
     UsuarioDao usuarioDao;
     
-    @Autowired
+    @Autowired 
     RolDao rolDao;
-
-
+ 
+ 
     @Override
-    @Transactional(readOnly = true)
-    public List<Usuario> getUsuarios() {
+    @Transactional(readOnly = true) 
+    public List<Usuario> getUsuarios() {  
         return (List<Usuario>) usuarioDao.findAll();
     }
 

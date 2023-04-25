@@ -50,8 +50,8 @@ public class SecurityConfig {
             throws Exception {
         http
                 .authorizeHttpRequests((requests) -> requests
-                .requestMatchers(
-                        "/",
+                .requestMatchers( 
+                        "/", 
                         "/index",
                         "/errores/**",
                         "/error",
