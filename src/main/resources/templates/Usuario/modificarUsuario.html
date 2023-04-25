@@ -1,48 +1,16 @@
-<html xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Modificar Usuario</title>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="/CSS/Menu.css" rel="stylesheet" type="text/css"/>
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>AudioTeca</title>
+        <meta charset="UTF-8"/>
     </head>
     <body>
-        <header th:replace="Layout/Plantilla :: header" />
-        <div class="contenido">
-            <h1>Datos del Usuario</h1>
-        <a th:href="@{/usuario/listado}">Regresar</a>
-        <br/>
-        <br/>
-        <form th:action="@{/usuario/guardar}"
-              method="POST"
-              th:object="${usuario}">
-            <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>
-           
-            <input type="text" id="nombre" name="nombre" th:field="*{nombre}"/>
-            <label for="nombre">Nombre</label><br/>
-            
-             <input type="email" id="correoElectronico" name="correoElectronico" th:field="*{correoElectronico}"/>
-            <label for="correoElectronico">correoElectronico</label><br/>
-            
-            
-            <input type="date" id="fechaNacimiento" name="fechaNacimiento" th:field="*{fechaNacimiento}"/>
-            <label for="fechaNacimiento">FechaNacimiento</label><br/>
-            
-
-            <input type="tel" id="telefono" name="telefono" th:field="*{telefono}"/>
-            <label for="telefono">Telefono</label><br/>
-            
-            <input type="text" id="nacionalidad" name="nacionalidad" th:field="*{nacionalidad}"/>
-            <label for="nacionalidad">Nacionalidad</label><br/>
-            
-            <input type="text" id="contrasenna" name="contrasenna" th:field="*{contrasenna}"/>
-            <label for="contrasenna">Contraseña</label><br/>
-            
-           
-            
-            <input type="submit" name="guardar" value="Guardar" />
-
-        </form>
-        </div>
-        <footer th:replace="Layout/Plantilla :: footer" />
+        <header th:replace="layout/plantilla :: header" />
+        <section th:replace="Usuario/fragmentosUsuario :: editarUsuario"/> 
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>
     </body>
 </html>
