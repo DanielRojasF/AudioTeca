@@ -1,6 +1,7 @@
 package com.AudioTeca.controller;
 
 import com.AudioTeca.Service.LibroService;
+import com.AudioTeca.domain.Libro;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,5 +34,6 @@ public class IndexController {
         model.addAttribute("libros", libros);
         return "index";
     }
-    
+      
     }
+   

@@ -19,7 +19,7 @@ import lombok.Data;
 public class Usuario implements Serializable {
     
     private static final long serialVersionUID = 1L;
-    
+     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long idUsuario;
@@ -31,15 +31,15 @@ public class Usuario implements Serializable {
     private String nacionalidad; 
     @NotEmpty
     private String contrasenna;
- 
+  
     public Usuario() {
-    }
-
+    }  
+ 
     public Usuario(String correoElectronico, String contrasenna) {
         this.correoElectronico = correoElectronico;
         this.contrasenna = contrasenna;
     }
-
+ 
     public Usuario(String nombre, String correoElectronico, String fechaNacimiento, String telefono, String nacionalidad, String contrasenna) {
         this.nombre = nombre;
         this.correoElectronico = correoElectronico;

@@ -15,13 +15,43 @@
                     <div class="card-body"> 
                         <h5 class="card-title">[[${libro.titulo}]]</h5>
                         <p class="card-text">[[${libro.descripcion}]]</p>
-                        <a href="http://localhost:93/libro/listado" class="btn btn-primary">Ver Libros</a>                        
+                        <!-- Button trigger modal -->
+                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verLibro" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
+                            Escuchar Audiolibro
+                        </button>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="verLibro" tabindex="-1" aria-labelledby="verLibroLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="verLibroLabel">Acerca del libro</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <image th:src="${libro.imagen}" height="150"/>
+                                        <article>
+                                            <figure>
+                                                <audio th:src="${libro.audio}" controls>
+                                                    <source src="${libro.audio}" type="audio/mpeg">
+                                                        Your browser does not support the <code>audio</code> tag.
+                                                </audio>
+                                            </figure>
+                                        </article>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                        <a href="http://localhost:93/libro/listado" class="btn btn-primary"> Ver mas </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
-        <div th:if="${libros == null or libros.empty}"  th:text="#{libro.no_mostrar}">
-            No tenemos lista de libros que mostrar...
-        </div>
+            <div th:if="${libros == null or libros.empty}"  th:text="#{libro.no_mostrar}">
+                No tenemos lista de libros que mostrar...
+            </div>
         </div>
         <footer th:replace="layout/plantilla :: footer"/>
     </body>

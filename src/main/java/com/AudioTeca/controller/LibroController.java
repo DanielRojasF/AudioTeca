@@ -69,6 +69,6 @@ public String busqueda(Libro libro, Model model){
      model.addAttribute("resultados",libros);
      return "/libro/buscarLibro";
      
-}  
-    
 }
+
+    }
