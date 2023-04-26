@@ -19,7 +19,7 @@
                         <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#verLibro" sec:authorize="hasRole('ROLE_ADMIN') or hasRole('ROLE_USER')">
                             Escuchar Audiolibro
                         </button>
-
+  
                         <!-- Modal -->
                         <div class="modal fade" id="verLibro">
                             <div class="modal-dialog">
@@ -32,17 +32,17 @@
                                         <div class="card" th:each="libro : ${libros}">
                                             <div class="card-body">
                                                 <img th:src="@{${libro.imagen}}" height="150">
-                                                <article>
-                                                    <figure>
-                                                        <audio th:src="@{${libro.audio}}" controls>
-                                                            <source src="@{${libro.audio}}" type="audio/mpeg">
-                                                                Your browser does not support the <code>audio</code> tag.
-                                                        </audio>
-                                                    </figure>
-                                                </article>
+                                                    <article>
+                                                        <figure>
+                                                            <audio th:src="@{${libro.audio}}" controls>
+                                                                <source src="@{${libro.audio}}" type="audio/mpeg">
+                                                                    Your browser does not support the <code>audio</code> tag.
+                                                            </audio>
+                                                        </figure>
+                                                    </article>
+                                                    </div>
                                             </div>
                                         </div>
-                                    </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
                                         <a href="http://localhost:93/libro/listado" class="btn btn-primary"> Ver mas </a>

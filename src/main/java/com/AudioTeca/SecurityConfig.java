@@ -27,7 +27,7 @@ public class SecurityConfig {
         build.userDetailsService(userDetailsService).passwordEncoder(new BCryptPasswordEncoder());
     }
 
-    
+     
     
 
 //    @Bean
@@ -74,7 +74,9 @@ public class SecurityConfig {
                         "/",
                         "/index",
                         "/libro/listado",
-                        "/libro/*.pdf*")
+                        "/libro/*.pdf*",
+                        "/usuario/modificaPerfil/**",
+                        "usuario/modificarPerfil/**")
                 .hasAnyRole("ADMIN", "USER")
                 )
                 .formLogin((form) -> form
@@ -84,7 +86,7 @@ public class SecurityConfig {
                 .exceptionHandling()
                 .accessDeniedPage("/errores/403");
         return http.build();
-    }
- 
-}
- 
+    } 
+           
+}      
+     

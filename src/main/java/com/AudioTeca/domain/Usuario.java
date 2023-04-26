@@ -12,8 +12,8 @@ import java.io.Serializable;
 import java.util.List;
 import javax.validation.constraints.NotEmpty;
 import lombok.Data;
-
-@Data
+   
+@Data   
 @Entity
 @Table(name="USUARIOS")
 public class Usuario implements Serializable {
@@ -22,7 +22,7 @@ public class Usuario implements Serializable {
      
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long idUsuario;
+    private Long idUsuario; 
     @NotEmpty
     private String nombre;
     private String correoElectronico;
@@ -47,14 +47,14 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
         this.nacionalidad = nacionalidad; 
         this.contrasenna = contrasenna;
-    }    
-             
+    }      
+              
                
                              
     @JoinColumn(name ="id_usuario")
     @OneToMany
     private List<Rol> roles;
         
-            
+               
        
-}  
+}          

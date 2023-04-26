@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://wwww.thymeleaf.org" 
+      xmlns:sec="http://thymeleaft.org/extras/spring-security">
+    <head th:replace="layout/plantilla :: head">
+        <title>AudioTeca</title>
+        <meta charset="UTF-8"/>
+    </head>
+    <body>
+        <header th:replace="layout/plantilla :: header" />
+        <section th:fragment="editarPerfil">            
+                        <form method="POST"
+                              th:action="@{/usuario/modificaPerfil}"
+                              th:object="${usuario}"
+                              class="was-validated">
+<!--                            <input type="hidden" name="idUsuario" th:field="*{idUsuario}"/>-->
+                            <section th:replace="usuario/fragmentosUsuario:: botonesEditar"/> 
+                            <div id="details">
+                                <div class="container">
+                                    <div class="row">
+                                        <div class="col">
+                                            <div class="card">
+                                                <div class="card-header">
+                                                    <h4>[[#{accion.actualizar}]]</h4>
+                                                </div>
+                                                <div class="card-body">
+                                                    <div class="form-group">
+                                                        <label for="nombre">Nombre </label>
+                                                        <input type="text" class="form-control" name="nombre" th:field="*{nombre}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="correoElectronico" >Correo </label>
+                                                        <input type="email"  class="form-control" name="correoElectronico" th:field="*{correoElectronico}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="fechaNacimiento">Fecha de Nacimiento </label>
+                                                        <input type="date"  class="form-control" name="fechaNacimiento" th:field="*{fechaNacimiento}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="telefono">Teléfono: </label>
+                                                        <input type="text"  class="form-control" name="telefono" th:field="*{telefono}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="nacionalidad">Fecha de Nacimiento </label>
+                                                        <input type="text"  class="form-control" name="nacionalidad" th:field="*{nacionalidad}"/>
+                                                    </div>
+                                                    <div class="form-group">
+                                                        <label for="contrasenna">Contraseña </label>
+                                                        <input type="text"  class="form-control" name="contrasenna" th:field="*{contrasenna}"/>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </section> 
+        <footer th:replace="layout/plantilla :: footer" />
+    </body>
+</html>
+    </body>
+</html>

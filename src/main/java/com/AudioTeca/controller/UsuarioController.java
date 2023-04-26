@@ -76,7 +76,41 @@ public class UsuarioController {
      return "/usuario/buscarUsuario";
      
  }  
-}
+ 
+// @GetMapping("/usuario/inicioPerfil")  
+//    public String inicioPerfil(Model model) {
+//        var usuarios=usuarioService.getUsuarios();        
+//        model.addAttribute("usuarios",usuarios);
+//        return "/usuario/modificarPerfil";
+//    }
+    
+//    @GetMapping("/modificarPerfil/{idUsuario}") 
+//    public String modificarPerfil(Usuario usuario, Model model){
+//        usuario = usuarioService.getUsuario(usuario);
+//        model.addAttribute("usuario", usuario);
+//        return "/usuario/modificarPerfil";
+//    }
+//    
+//    @GetMapping("/nuevoPerfil")
+//    public String nuevoPerfil(Usuario usuario){
+//        return "/usuario/modificarPerfil";
+//    }
+ 
+ @GetMapping("/usuario/modificarPerfil")
+    public String inicioPerfil(Model model){
+      var usuario = usuarioService.getClass();
+      model.addAttribute("usuario", usuario);
+      return "/usuario/modificarPerfil";
+    }
+    
+    @GetMapping("usuario/modificaPerfil/{idUsuario}")
+        public String modificarPerfil(Usuario usuario, Model model){
+        usuario = usuarioService.getUsuario(usuario);
+        model.addAttribute("usuario", usuario);
+        return "/usuario/modificaPerfil";
+
+    }
+} 
 
 
 

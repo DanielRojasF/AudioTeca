@@ -34,7 +34,7 @@
                         </ul>
                         <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
                             <li class="nav-item mr-3">
-                                <a href="#" class="nav-link">
+                                <a href="http://localhost:93/usuario/modificarPerfil" class="nav-link" sec:authorize="hasRole('ROLE_USER')">
                                     <i class="fas fa-user"></i>
                                     <span th:text="#{plantilla.bienvenido}">Bievenido:</span>
                                     <span sec:authentication="name">Usuario</span>
