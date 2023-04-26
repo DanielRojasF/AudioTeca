@@ -47,14 +47,14 @@ public class Usuario implements Serializable {
         this.telefono = telefono;
         this.nacionalidad = nacionalidad; 
         this.contrasenna = contrasenna;
-    }
-     
-
-    
+    }    
+             
+               
+                             
     @JoinColumn(name ="id_usuario")
     @OneToMany
     private List<Rol> roles;
-    
-   
-    
-}
+        
+            
+       
+}  

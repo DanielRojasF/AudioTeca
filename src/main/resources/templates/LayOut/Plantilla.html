@@ -1,8 +1,5 @@
-<!D<DOCTYPE html>
-
-<ht<html  xmlns:th="http://www.thymeleaf.org"
-   xmlns:sec="http://www.thymeleaf.org.thymeleaf-extras-springsecurity">
-
+<!DOCTYPE html>
+<html>
     <head th:fragment="head">
         <title>AudioTeca</title>
         <meta charset="UTF-8">
@@ -13,148 +10,130 @@
         <script th:src="@{/webjars/bootstrap/js/bootstrap.min.js}"></script>
     </head>
     <body>
-        <header th:fragment="header" class="header"> 
-            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0"> 
-                <div class="container"> 
-                    <a th:href="@{/}" class="navbar-brand">AudioTeca</a> 
-                    <button class="navbar-toggler" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"> 
+        <header th:fragment="header" class="header">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark p-0">
+                <div class="container">
+                    <a th:href="@{/}" class="navbar-brand">AudioTeca</a>
+                    <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarCollapse">
                         <span class="navbar-toggler-icon"></span>
-                    </button> 
-                    <div class="collapse navbar-collapse" id="navbarCollapse"> 
-                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')or hasRole('ROLE_USER')">  
-                            <li class="nav-item px-2" sec:authorize="hasRole('ROLE_ADMIN')"> 
-                                <a class="nav-link" th:href="@{/usuario/listado}"
-                                   th:text="#{plantilla.usuarios}">Usuarios</a> 
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarCollapse">
+                        <ul class="navbar-nav" sec:authorize="hasRole('ROLE_ADMIN')or hasRole('ROLE_USER')">
+                            <li class="nav-item px-2" sec:authorize="hasRole('ROLE_ADMIN')">
+                                <a th:href="@{/usuario/listado}" class="nav-menu-link nav-link"
+                                   th:text="#{plantilla.usuarios}">Clientes</a>
                             </li>
-                            <li class="nav-item px-2"> 
-                                <a class="nav-link" th:href="@{/libro/listado}"
-                                   th:text="#{plantilla.libros}">Libros</a> 
+                            <li class="nav-item px-2">
+                                <a th:href="@{/libro/listado}" class="nav-menu-link nav-link"
+                                   th:text="#{plantilla.libros}">Categorias</a>
                             </li>
-                            <li class="nav-item px-2"> 
-                                <a class="nav-link" th:href="@{/libro/listado}"
-                                   th:text="#{plantilla.favoritos}">Favorilos</a> 
+                            <li class="nav-item px-2">
+                                <a th:href="@{/libro/listado}" class="nav-menu-link nav-link"
+                                   th:text="#{plantilla.favoritos}">Articulos</a>
                             </li>
                         </ul>
-                        
-                        
-                        
-                        <ul>
-                         <div class="container" >
-                <div class="row">
-                    <div class="col-md-3" >   
-                        <button 
-                            type="button" 
-                            class="btn btn-primary btn-block" 
-                            data-bs-toggle="modal" 
-                            data-bs-target="#agregarUsuario">
-                            <i class="nav-item px-2"></i> [[#{accion.agregar}]]
-                        </button>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        
-        <section th:fragment="agregarUsuario">
-            <div id="agregarUsuario" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-lg">
-                    <div class="modal-content">
-                        <div class="modal-header bg-info text-white">
-                            <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Usuario</h5>
-                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div> 
-                        <form th:action="@{/usuario/guardar}" th:object="${usuario}"
-                              method="POST" class="was-validated">
-                            <div class="modal-body">
-                                <div class="form-group">
-                                    <label for="nombre" th:text="#{usuario.nombre}">Nombre</label>
-                                    <input type="text" class="form-control" name="nombre" required="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="correoElectronico" th:text="#{usuario.correoElectronico}">correoElectronico</label>
-                                    <input type="text" class="form-control" name="correoElectronico" required="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="fechaNacimiento" th:text="#{usuario.fechaNacimiento}">fechaNacimiento</label>
-                                    <input type="date" class="form-control" name="fechaNacimiento" required="true">
-                                </div>
-                                <div class="form-group">
-                                    <label for="telefono" th:text="#{usuario.telefono}">Teléfono</label>
-                                    <input type="tel" class="form-control" name="telefono">
-                                </div>
-                                <div class="form-group">
-                                    <label for="nacionalidad" th:text="#{usuario.nacionalidad}">nacionalidad</label>
-                                    <input type="text" class="form-control" name="nacionalidad" required="true" >
-                                </div>
-                                 <div class="form-group">
-                                    <label for="contrasenna" th:text="#{usuario.contrasenna}">contrasenna</label>
-                                    <input type="text" class="form-control" name="contrasenna" required="true">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>  
-                       </ul> 
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        
-                        <ul class="navbar-nav ml-auto" sec:authorize="isAuthenticated()"> 
-                            <li class="nav-item mr-3"> 
-                                <a href="#" class="nav-link"> 
-
+                        <ul sec:authorize="isAuthenticated()" class="navbar-nav ml-auto">
+                            <li class="nav-item mr-3">
+                                <a href="#" class="nav-link">
                                     <i class="fas fa-user"></i>
-
-                                    <span th:text="#{plantilla.bienvenido}">Bienvenido</span>
-
+                                    <span th:text="#{plantilla.bienvenido}">Bievenido:</span>
                                     <span sec:authentication="name">Usuario</span>
-                                </a> 
+                                </a>
                             </li>
-                            <li class="nav-item"> <form method="POST" th:action="@{/logout}"> 
+                            <li class="nav-item mr-3">
+                                <a href="#" class="nav-link">
+                                    <span th:text="#{plantilla.troles}">Roles:</span>
+                                    <span sec:authentication="principal.authorities">XXX</span>
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <form method="POST" th:action="@{/logout}">
                                     <a href="#" onclick="this.parentNode.submit();" class="nav-link">
-                                        <i class="fas fa-user-times">
+                                        <i class="fas fa-user-times"></i> [[#{plantilla.logout}]]
 
-                                        </i> [[#{plantilla.logout}]] </a>
+                                    </a>
                                 </form>
                             </li>
-                        </ul> 
-                        <ul class="navbar-nav" sec:authorize="!isAuthenticated()">             
-                            <li class="nav-item">                 
-                                <a class="nav-link" th:href="@{/login}"><i class="fas fa-sign-in-alt">  Login</i></a>            
-                            </li>           
                         </ul>
-                    </div> 
-                </div> 
+                        <ul class="navbar-nav" sec:authorize="!isAuthenticated()">
+                            <li class="nav-item">
+                                <a class="nav-link" th:href="@{/login}"><i class="fas fa-sign-in-alt"> Login </i></a>
+                            </li>                            
+                        </ul>
+                    </div>
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-3" >   
+                                <button 
+                                    type="button" 
+                                    class="btn btn-primary btn-block" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#agregarUsuario">
+                                    <i class="nav-item"></i> [[#{accion.registrarse}]]
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <section th:fragment="agregarUsuario">
+                    <div id="agregarUsuario" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog modal-lg">
+                            <div class="modal-content">
+                                <div class="modal-header bg-info text-white">
+                                    <h5 class="modal-title" th:text="#{accion.agregar}">Agregar Usuario</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div> 
+                                <form th:action="@{/usuario/guardar}" th:object="${usuario}"
+                                      method="POST" class="was-validated">
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <label for="nombre" th:text="#{usuario.nombre}">Nombre</label>
+                                            <input type="text" class="form-control" name="nombre" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="correoElectronico" th:text="#{usuario.correoElectronico}">correoElectronico</label>
+                                            <input type="text" class="form-control" name="correoElectronico" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="fechaNacimiento" th:text="#{usuario.fechaNacimiento}">fechaNacimiento</label>
+                                            <input type="date" class="form-control" name="fechaNacimiento" required="true">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="telefono" th:text="#{usuario.telefono}">Teléfono</label>
+                                            <input type="tel" class="form-control" name="telefono">
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="nacionalidad" th:text="#{usuario.nacionalidad}">nacionalidad</label>
+                                            <input type="text" class="form-control" name="nacionalidad" required="true" >
+                                        </div>
+                                        <div class="form-group">
+                                            <label for="contrasenna" th:text="#{usuario.contrasenna}">contrasenna</label>
+                                            <input type="text" class="form-control" name="contrasenna" required="true">
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button class="btn btn-primary" type="submit" th:text="#{accion.guardar}">Guardar</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </section>
             </nav>
+
+            <section id="main-header" class="py-2 bg-secondary text-white">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h1>
+                                <i class="fas-thin fa-books">Libros Disponibles</i> 
+                            </h1>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </header>
-       <footer th:fragment="footer" class="position-fixed bottom-0 start-0 end-0 bg-dark text-white mt-5 p-2">
+        <footer th:fragment="footer" class="position-fixed bottom-0 start-0 end-0 bg-dark text-white mt-5 p-2">
             <div class="container">
                 <div class="col">
                     <p class="lead text-center">

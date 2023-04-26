@@ -8,10 +8,10 @@
     <body>
         <header th:replace="layout/plantilla :: header"/>
         <div class="container">
-            <h2>Libros Disponibles</h2>            
+            <h2>Escucha los Mejores audiolibros aqui</h2>            
             <div class="row row-cols-3" th:if="${libros != null and !libros.empty}">
                 <div class="card" th:each="libro : ${libros}" >
-                    <image th:src="${libro.imagen}" lass="card-img-top" alt="..."/>
+                    <image th:src="@{${libro.imagen}}" lass="card-img-top" alt="..."/>
                     <div class="card-body"> 
                         <h5 class="card-title">[[${libro.titulo}]]</h5>
                         <p class="card-text">[[${libro.descripcion}]]</p>
@@ -21,7 +21,7 @@
                         </button>
 
                         <!-- Modal -->
-                        <div class="modal fade" id="verLibro" tabindex="-1" aria-labelledby="verLibroLabel" aria-hidden="true">
+                        <div class="modal fade" id="verLibro">
                             <div class="modal-dialog">
                                 <div class="modal-content">
                                     <div class="modal-header">
@@ -29,15 +29,19 @@
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
-                                        <image th:src="${libro.imagen}" height="150"/>
-                                        <article>
-                                            <figure>
-                                                <audio th:src="${libro.audio}" controls>
-                                                    <source src="${libro.audio}" type="audio/mpeg">
-                                                        Your browser does not support the <code>audio</code> tag.
-                                                </audio>
-                                            </figure>
-                                        </article>
+                                        <div class="card" th:each="libro : ${libros}">
+                                            <div class="card-body">
+                                                <img th:src="@{${libro.imagen}}" height="150">
+                                                <article>
+                                                    <figure>
+                                                        <audio th:src="@{${libro.audio}}" controls>
+                                                            <source src="@{${libro.audio}}" type="audio/mpeg">
+                                                                Your browser does not support the <code>audio</code> tag.
+                                                        </audio>
+                                                    </figure>
+                                                </article>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
